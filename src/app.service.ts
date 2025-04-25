@@ -8,15 +8,12 @@ import { GoogleGenAI } from "@google/genai";
   constructor(@InjectRepository(Card) private cardRepository: Repository<Card>){}
 
   findAll(category:string) {
-    if(category != ''){
+    if(category != '' && category != 'all'){
       return this.cardRepository.find({
         where:{
           addedAt:`${category}`
         }
       })
-    }
-    if(category === ''){
-      return this.cardRepository.find()
     }
   }
 
