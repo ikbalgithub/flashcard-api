@@ -15,6 +15,9 @@ import { GoogleGenAI } from "@google/genai";
         }
       })
     }
+    else{
+      return this.cardRepository.find()
+    }
   }
 
   addOrUpdate(params:any){
