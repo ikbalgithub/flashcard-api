@@ -10,7 +10,7 @@ import { GoogleGenAI } from "@google/genai";
   findAll(category:string) {
     if(category != ''){
       if(category === 'all'){
-        return return this.cardRepository.find()
+        return this.cardRepository.find()
       }
       else{
         return this.cardRepository.find({
