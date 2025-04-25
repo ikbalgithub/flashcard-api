@@ -15,7 +15,7 @@ import { GoogleGenAI } from "@google/genai";
         }
       })
     }
-    if(category === 'all'){
+    if(category === ''){
       return this.cardRepository.find()
     }
   }
