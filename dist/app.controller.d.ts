@@ -2,6 +2,7 @@ import { AppService } from './app.service';
 export declare class AppController {
     private appService;
     constructor(appService: AppService);
+    prompt(params: string): Promise<string>;
     findAll(category: string): Promise<import("./app.entity").Card[]>;
     add(params: any): void | "added";
     update(params: any): void | "updated";
