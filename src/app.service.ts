@@ -8,15 +8,18 @@ import { GoogleGenAI } from "@google/genai";
   constructor(@InjectRepository(Card) private cardRepository: Repository<Card>){}
 
   findAll(category:string) {
-    if(category != '' && category != 'all'){
-      return this.cardRepository.find({
-        where:{
-          addedAt:`${category}`
-        }
-      })
-    }
-    else{
-      return this.cardRepository.find()
+    if(category != ''){
+      if(category === 'all'){
+        return return this.cardRepository.find()
+      }
+      else{
+        return this.cardRepository.find({
+          where:{
+            addedAt:`${category}`
+          }
+        })
+      }
+     
     }
   }
 
@@ -39,18 +42,5 @@ import { GoogleGenAI } from "@google/genai";
     .createQueryBuilder('card')
     .where('card.romaji REGEXP :c',{c:`^${c}`})
     .getMany()
-  }
-
-  async runPrompter(params:string){
-    const ai = new GoogleGenAI({apiKey:"AIzaSyBv69qTEYVQ2XwdRVy6XbIrChC3kVv-8oA"})
-    const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
-      contents: `
-        Sebutkan setiap kata yang terdapat pada kalimat ${params} dengan format:
-        bentuk kamus dari kata tersebut - romaji - maknanya secara singkat 
-      `,
-    });
-
-    return JSON.stringify(response.text)
   }
 }

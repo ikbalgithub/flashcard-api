@@ -6,11 +6,6 @@ import { Repository } from 'typeorm';
 
 @Controller() export class AppController {
   constructor(private appService:AppService,){}
-
-  @Get('prompt') prompt(@Query('params') params:string){
-    return this.appService.runPrompter(params)
-  }
-
   @Get() findAll(@Query('category') category:string) {
     return this.appService.findAll(category)
   }
