@@ -9,6 +9,8 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
   @Column({type:'text'}) romaji:string
 
+  @Column({type:'text'}) context:string
+
   @Column({type:'text'}) addedAt:string
 }
 
