@@ -1,9 +1,7 @@
 export declare class Card {
     id: string;
-    kanji: string;
-    furigana: string;
-    mean: string;
-    context: string;
+    original: string;
     romaji: string;
+    mean: string;
     addedAt: string;
 }

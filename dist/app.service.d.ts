@@ -7,5 +7,4 @@ export declare class AppService {
     addOrUpdate(params: any): void;
     remove(id: string): void;
     findByCriteria(c: string): Promise<Card[]>;
-    runPrompter(params: string): Promise<string>;
 }

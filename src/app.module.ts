@@ -7,11 +7,11 @@ import { Card } from './app.entity'
 
 var mysqlConfig = TypeOrmModule.forRoot({
   type: 'mysql',
-  host: 'sql7.freesqldatabase.com',
+  host: 'localhost',
   port: 3306,
-  username: 'sql7774806',
-  password: '5V5Hjptfu8',
-  database: 'sql7774806',
+  username: 'root',
+  password: '',
+  database: 'flashcard-api',
   entities: [Card],
   synchronize: true,
 })

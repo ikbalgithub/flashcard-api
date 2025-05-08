@@ -14,11 +14,11 @@ const typeorm_1 = require("@nestjs/typeorm");
 const app_entity_1 = require("./app.entity");
 var mysqlConfig = typeorm_1.TypeOrmModule.forRoot({
     type: 'mysql',
-    host: 'sql7.freesqldatabase.com',
+    host: 'localhost',
     port: 3306,
-    username: 'sql7774806',
-    password: '5V5Hjptfu8',
-    database: 'sql7774806',
+    username: 'root',
+    password: '',
+    database: 'flashcard-api',
     entities: [app_entity_1.Card],
     synchronize: true,
 });

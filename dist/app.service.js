@@ -17,36 +17,22 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const app_entity_1 = require("./app.entity");
-const genai_1 = require("@google/genai");
 let AppService = class AppService {
     constructor(cardRepository) {
         this.cardRepository = cardRepository;
     }
     findAll(category) {
-        if (category === 'today') {
-            var _date = new Date();
-            var year = _date.getFullYear();
-            var month = _date.getMonth() + 1;
-            var date = _date.getDate();
-            return this.cardRepository.find({
-                where: {
-                    addedAt: `${year}/${month}/${date}`
-                }
-            });
-        }
-        if (category === 'yesterday') {
-            var _date = new Date();
-            var year = _date.getFullYear();
-            var month = _date.getMonth() + 1;
-            var date = _date.getDate() - 1;
-            return this.cardRepository.find({
-                where: {
-                    addedAt: `${year}/${month}/${date}`
-                }
-            });
-        }
-        if (category === 'all') {
-            return this.cardRepository.find();
+        if (category != '') {
+            if (category === 'all') {
+                return this.cardRepository.find();
+            }
+            else {
+                return this.cardRepository.find({
+                    where: {
+                        addedAt: `${category}`
+                    }
+                });
+            }
         }
     }
     addOrUpdate(params) {
@@ -64,17 +50,6 @@ let AppService = class AppService {
             .createQueryBuilder('card')
             .where('card.romaji REGEXP :c', { c: `^${c}` })
             .getMany();
-    }
-    async runPrompter(params) {
-        const ai = new genai_1.GoogleGenAI({ apiKey: "AIzaSyBv69qTEYVQ2XwdRVy6XbIrChC3kVv-8oA" });
-        const response = await ai.models.generateContent({
-            model: "gemini-2.0-flash",
-            contents: `
-        Sebutkan setiap kata yang terdapat pada kalimat ${params} dengan format:
-        bentuk kamus dari kata tersebut - romaji - maknanya secara singkat 
-      `,
-        });
-        return JSON.stringify(response.text);
     }
 };
 exports.AppService = AppService;

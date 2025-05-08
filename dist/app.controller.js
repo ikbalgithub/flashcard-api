@@ -19,9 +19,6 @@ let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
-    prompt(params) {
-        return this.appService.runPrompter(params);
-    }
     findAll(category) {
         return this.appService.findAll(category);
     }
@@ -39,15 +36,13 @@ let AppController = class AppController {
     findByCriteria(criteria) {
         return this.appService.findByCriteria(criteria);
     }
+    test() {
+        return {
+            'works': true
+        };
+    }
 };
 exports.AppController = AppController;
-__decorate([
-    (0, common_1.Get)('prompt'),
-    __param(0, (0, common_1.Query)('params')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], AppController.prototype, "prompt", null);
 __decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Query)('category')),
@@ -83,6 +78,12 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "findByCriteria", null);
+__decorate([
+    (0, common_1.Get)('/test'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "test", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])

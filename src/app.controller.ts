@@ -33,5 +33,11 @@ import { Repository } from 'typeorm';
   @Get(':criteria') findByCriteria(@Param('criteria') criteria: any) {
     return this.appService.findByCriteria(criteria)
   }
+
+  @Get('/test') test(){
+    return {
+      'works':true
+    }
+  }
 }
 
